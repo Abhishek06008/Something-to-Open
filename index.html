@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Shreya</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+      height: 100vh;
+    }
+    .cake, .message, .final {
+      display: none;
+      text-align: center;
+    }
+    .cake img {
+      width: 200px;
+      animation: pop 1s ease-in-out;
+    }
+    .firework {
+      position: absolute;
+      top: 30%;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #fff 0%, transparent 70%);
+      border-radius: 50%;
+      animation: explode 1s infinite;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes explode {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .typing {
+      border-right: 2px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards;
+      font-size: 2em;
+    }
+    @keyframes typing {
+      to { width: 100%; }
+    }
+    .msg-icon {
+      font-size: 3em;
+      cursor: pointer;
+      animation: pop 1s infinite alternate;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      background: #ff0077;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cake" id="cakeSlide">
+    <img src="https://i.imgur.com/4AiXzf8.png" alt="cake" />
+    <p>Lighting candles...</p>
+  </div>
+
+  <div class="cake" id="fireworksSlide">
+    <div class="firework" style="left: 20%;"></div>
+    <div class="firework" style="left: 60%;"></div>
+    <div class="typing" id="typingText">Happy Birthday Beautiful ❤️</div>
+  </div>
+
+  <div class="message" id="messageSlide">
+    <div class="msg-icon" onclick="showMessage()">💌</div>
+    <div id="msgContent" class="hidden">
+      <p>
+        I still remember the day I met you at that wedding –<br>
+        who knew I'd find such a beautiful soul?<br><br>
+        You've been a reason, a motivation,<br>
+        and a spark behind many of my efforts.<br><br>
+        Just know, you matter a lot.<br>
+        Stay amazing, always. ❤️
+      </p>
+      <button onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+
+  <div class="final" id="finalSlide">
+    <h1>Wishing once again a<br>Happy Birthday Shreya ❤️🫶🏻</h1>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = [
+      document.getElementById('cakeSlide'),
+      document.getElementById('fireworksSlide'),
+      document.getElementById('messageSlide'),
+      document.getElementById('finalSlide')
+    ];
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'flex' : 'none';
+      });
+    }
+
+    function nextSlide() {
+      currentSlide++;
+      if (currentSlide < slides.length) {
+        showSlide(currentSlide);
+      }
+    }
+
+    function showMessage() {
+      document.getElementById('msgContent').classList.remove('hidden');
+    }
+
+    // Begin animation sequence
+    showSlide(0);
+    setTimeout(() => {
+      nextSlide();
+    }, 3000); // Candle lighting
+
+    setTimeout(() => {
+      nextSlide();
+    }, 8000); // Fireworks & typing
+
+    // Final appears after message is clicked
+  </script>
+
+</body>
+</html>
